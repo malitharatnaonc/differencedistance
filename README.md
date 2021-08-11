@@ -18,7 +18,7 @@ ddm.py -a [end pdb file] -b [start pdb file] -aC [chains for end pdb] -bC [chain
 * ```-bC```	Chains to use for pdb file b. (separated by a comma) [should be equivalent to those of pdb file a]
 
 ## Optional Fields
-* ```--verbose```\tChoice of outputting all intermediate information files in csv format.
+* ```--verbose```	Choice of outputting all intermediate information files in csv format.
 
 ## Running Example
 Say we wish to obtain the ddm for the conformational shifts from 7af1.pdb to 7apv.pdb, only looking at chain A for both, we would then run:
