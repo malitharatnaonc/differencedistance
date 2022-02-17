@@ -29,6 +29,7 @@ aminos = {
 ## Important calculation functions ##
 """-------------------------------"""
 
+
 def str2bool(v):
     """Conversion from an input string to a boolean
     Adapted from: https://github.com/symonsoft/str2bool
@@ -44,14 +45,35 @@ def str2bool(v):
         raise argparse.ArgumentTypeError('Boolean value expected.')
 
 
+
 def diff(x):
-    """Takes a list and returns a list of differences"""
+    """Generates all possible differences between values in a list.
+    
+    Parameters
+    ----------
+    x : list
+        List of numbers
+
+    Returns
+    -------
+    diff_x : list
+        List of differences between all values in x 
+    
+    Examples
+    --------
+    >>> diff([1, 2, 3])
+    [0, -1, -2, 1, 0, -1, 2, 1, 0]
+
+    """
+
+    
     diff_x = []
     for a1 in x:
         for b1 in x:
             diff_x.append(a1 - b1)
 
     return diff_x
+
 
 
 def absolute(a, b, c):
@@ -69,13 +91,14 @@ def absolute(a, b, c):
     return absolute
 
 
+
 def checker(df):
     """
     In a filetype, searched for any duplicate residues and keeps
     one with higher occupancy or lower bfactor
 
-    Inputs
-    ------
+    Parameters
+    ----------
     df : pd.DataFrame object
         Input dataframe
 
@@ -105,8 +128,8 @@ def checker(df):
 def residue_corrector(af, bf, aChains=None, bChains=None):
     """For the two peptides, residue numbers are compared to ensure they match.
     
-    Inputs
-    ------
+    Parameters
+    ----------
     af, bf : pd.DataFrame
         Columns of the residue numbers for two proteins
     aChains, bChains : list
@@ -176,7 +199,7 @@ class DDM():
         if s.pdbfile.split('.')[-1] == 'pdb':
             try:
                 with open(s.pdbfile) as file:
-                    filelines = list(file.readlines())
+                    filelines = [f for f in file.readlines() if f.startswith("ATOM")]
             except:
                 raise ValueError("Cannot find the file {0}".format(s.pdbfile))
         else:
